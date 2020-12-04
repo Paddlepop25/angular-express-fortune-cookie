@@ -21,12 +21,6 @@ const app = express()
 app.use(morgan('combined'))
 
 // resources
-app.get('/', (req, res) => {
-  res.status(200)
-  res.type('html')
-  res.send('<h1>Homepage</h1>')
-})
-
 // // if want to use for all paths
 // app.use(cors())
 
@@ -50,6 +44,9 @@ app.get('/api/cookie/', cors(), (req, res) => {
     // console.info('cookies ---> ', cookies)
   }
 })
+
+// serve the frontend directory/folder (like using public or static)
+app.use(express.static(__dirname + '/frontend'))
 
 // any path not matching, send back to homepage
 app.use('/', (req, res) => {
