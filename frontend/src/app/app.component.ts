@@ -11,7 +11,7 @@ export class AppComponent implements OnInit {
 
   fortuneCookieForm: FormGroup
   cookies: FortuneCookie[] = [
-    { cookie: 'Press the button to get your fortune cookies 🥠'} // cookie is from the 'model' FortuneCookie
+    { cookie: 'My fortune tells me...'} // cookie is from the 'model' FortuneCookie
   ]
   
   constructor(private fb: FormBuilder, private cookieSvc: CookieServiceToCallBackend) {}
