@@ -3,6 +3,13 @@ const express = require('express')
 const fortuneCookie = require('fortune-cookie')
 const morgan = require('morgan')
 
+const randomCookies = () => {
+  // console.info('fortuneCookie.length ---> ', fortuneCookie.length) // 250
+  const indexOfCookie = Math.floor(Math.random() * fortuneCookie.length)
+  // console.info('indexOfCookie ---> ', indexOfCookie)
+  return fortuneCookie[indexOfCookie]
+}
+
 // configuration
 const PORT = parseInt(process.argv[2]) || parseInt(process.env.PORT) || 3000
 
@@ -24,9 +31,20 @@ app.get('/', (req, res) => {
 // GET /api/cookie --> application/json { cookie: 'cookie text' }
 // GET /api/cookie?count=4 --> application/json [ { cookie: 'cookie text' }]
 app.get('/api/cookie/', (req, res) => {
+  const numberOfFortuneCookies = parseInt(req.query['count']) || 1 // req.query is the query after '?' .../?count=xx
+  // console.info('cookieNum query ---> ', numberOfFortuneCookies)
+
   res.status(200)
   res.type('application/json')
-  res.send(fortuneCookie[0])
+
+  if (numberOfFortuneCookies == 1) res.json({ cookie: randomCookies() })
+  else {
+    const cookies = []
+    for (let i = 0; i < numberOfFortuneCookies; i++)
+      cookies.push({ cookie: randomCookies() })
+    res.json(cookies)
+    // console.info('cookies ---> ', cookies)
+  }
 })
 
 // any path not matching, send back to homepage
