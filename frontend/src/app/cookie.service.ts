@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from "@angular/core";
 
 export interface FortuneCookie {
@@ -23,10 +23,7 @@ export class CookieServiceToCallBackend {
       .toPromise()
 
     if (defaultCookie == 1) 
-      return [ response as FortuneCookie ] // we need array hence [ ]
+      return [ response as FortuneCookie ] // we need array (because Promise<FortuneCookie[]) hence [ ]
     return response as FortuneCookie[] // otherwise it is an array already so FortuneCookie[]
-    
-
   }
-  
 }

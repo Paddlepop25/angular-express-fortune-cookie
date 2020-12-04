@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { CookieServiceToCallBackend } from './cookie.service';
+import { CookieServiceToCallBackend, FortuneCookie } from './cookie.service';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +10,9 @@ import { CookieServiceToCallBackend } from './cookie.service';
 export class AppComponent implements OnInit {
 
   fortuneCookieForm: FormGroup
+  cookies: FortuneCookie[] = [
+    { cookie: 'Press the button to get your fortune cookies 🥠'} // cookie is from the 'model' FortuneCookie
+  ]
   
   constructor(private fb: FormBuilder, private cookieSvc: CookieServiceToCallBackend) {}
 
@@ -19,11 +22,12 @@ export class AppComponent implements OnInit {
     })
   }
 
-  // async getCookies() {
-  //   const numOfCookies = parseInt(this.fortuneCookieForm.value['numberOfCookies'])
-  //   // console.log("🍪", numOfCookies)
-  //   let fortuneCookies = await this.cookieSvc.getCookies()
-  //   console.log(fortuneCookies)
-  // }
+  async getFortuneCookies() {
+    const numOfCookies = parseInt(this.fortuneCookieForm.value['numberOfCookies'])
+    // console.log("🍪", numOfCookies)
+    let fortuneCookies = await this.cookieSvc.getCookies(numOfCookies)
+    console.log(fortuneCookies)
+    this.cookies = fortuneCookies
+  }
 
 }

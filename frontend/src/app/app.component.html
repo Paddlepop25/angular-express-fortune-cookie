@@ -1,6 +1,6 @@
 <h1>Fortune cookie</h1>
 
-<form [formGroup]="fortuneCookieForm" (ngSubmit)="getCookies()">
+<form [formGroup]="fortuneCookieForm" (ngSubmit)="getFortuneCookies()">
   <label for="number-of-fortune-cookies"
     >Select how many 🥠 fortune cookies you want</label
   >
@@ -13,4 +13,7 @@
   </select>
 
   <button type="submit">Give me 🥠</button>
+  <div *ngFor="let c of cookies">
+    {{ c.cookie }}
+  </div>
 </form>

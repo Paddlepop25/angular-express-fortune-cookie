@@ -1,3 +1,4 @@
+const cors = require('cors')
 // load libraries
 const express = require('express')
 const fortuneCookie = require('fortune-cookie')
@@ -26,11 +27,14 @@ app.get('/', (req, res) => {
   res.send('<h1>Homepage</h1>')
 })
 
+// // if want to use for all paths
+// app.use(cors())
+
 // fortuneCookie[0] is how to get 1st cookie text
 // https://github.com/reggi/fortune-cookie/blob/master/fortune-cookie.json
 // GET /api/cookie --> application/json { cookie: 'cookie text' }
 // GET /api/cookie?count=4 --> application/json [ { cookie: 'cookie text' }]
-app.get('/api/cookie/', (req, res) => {
+app.get('/api/cookie/', cors(), (req, res) => {
   const numberOfFortuneCookies = parseInt(req.query['count']) || 1 // req.query is the query after '?' .../?count=xx
   // console.info('cookieNum query ---> ', numberOfFortuneCookies)
 
