@@ -1,6 +1,9 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from "@angular/core";
 
+// const SERVER = 'http://localhost:3000/api/cookie'
+const SERVER = '/api/cookie'
+
 export interface FortuneCookie {
   cookie: string;
 }
@@ -19,7 +22,7 @@ export class CookieServiceToCallBackend {
 
     // construct the call: must match the calls between server and client
     // this.http.get ANY because one returns 1 cookie and another returns an array of cookies
-    let response = await this.http.get<any>('http://localhost:3000/api/cookie', { params: params })
+    let response = await this.http.get<any>(SERVER, { params: params })
       .toPromise()
 
     if (defaultCookie == 1) 
