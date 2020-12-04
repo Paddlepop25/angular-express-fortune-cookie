@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { CookieServiceToCallBackend } from './cookie.service';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,7 @@ export class AppComponent implements OnInit {
 
   fortuneCookieForm: FormGroup
   
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private cookieSvc: CookieServiceToCallBackend) {}
 
   ngOnInit() {
     this.fortuneCookieForm = this.fb.group({
@@ -18,9 +19,11 @@ export class AppComponent implements OnInit {
     })
   }
 
-  getCookies() {
-    const numOfCookies = parseInt(this.fortuneCookieForm.value['numberOfCookies'])
-    // console.log("🍪", numOfCookies)
-  }
+  // async getCookies() {
+  //   const numOfCookies = parseInt(this.fortuneCookieForm.value['numberOfCookies'])
+  //   // console.log("🍪", numOfCookies)
+  //   let fortuneCookies = await this.cookieSvc.getCookies()
+  //   console.log(fortuneCookies)
+  // }
 
 }

@@ -1,9 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http' 
+import { HttpClient } from '@angular/common/http' 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
+import { CookieServiceToCallBackend } from './cookie.service';
 
 @NgModule({
   declarations: [
@@ -11,10 +12,10 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
+    HttpClient,
     FormsModule, ReactiveFormsModule
   ],
-  providers: [],
+  providers: [CookieServiceToCallBackend],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
