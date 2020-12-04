@@ -1,12 +1,12 @@
 <h1>Fortune cookie</h1>
 
-<form>
+<form [formGroup]="fortuneCookieForm" (ngSubmit)="getCookies()">
   <label for="number-of-fortune-cookies"
     >Select how many 🥠 fortune cookies you want</label
   >
-  <select id="number-of-fortune-cookies">
+  <select id="number-of-fortune-cookies" formControlName="numberOfCookies">
     <option value="1">1</option>
-    <option value="2">2</option>
+    <option value="2" checked>2</option>
     <option value="3">3</option>
     <option value="4">4</option>
     <option value="5">5</option>
